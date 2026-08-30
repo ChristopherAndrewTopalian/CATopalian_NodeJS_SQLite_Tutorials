@@ -1,5 +1,7 @@
 # CATopalian NodeJS SQLite Tutorials
-Master Node.js SQLite to process massive datasets. From mapping the human genome to managing high-stakes military logistics, learn the essential database skills needed to organize millions of records and advance human technology.
+Master Node.js SQLite to process massive datasets. From mapping the human genome to managing high-stakes military logistics, learn the essential database skills needed to organize millions of records and advance human technology.  
+
+### [TABLE OF CONTENTS](TABLE_OF_CONTENTS.md)  
 
 ---
 
