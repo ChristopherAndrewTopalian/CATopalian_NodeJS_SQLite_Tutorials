@@ -11,7 +11,7 @@ SET quantity = 100
 WHERE part_name = 'Kevlar Vest';
 `;
 
-// Execute the change -- no commit needed, writes immediately
+// Execute the change - no commit needed, writes immediately
 db.exec(sql_update);
 
 console.log("Military Warehouse inventory updated successfully!");

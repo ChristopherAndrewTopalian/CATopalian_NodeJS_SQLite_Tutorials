@@ -10,7 +10,7 @@ DELETE FROM Inventory
 WHERE part_name = 'Night Vision Goggles';
 `;
 
-// Execute the change -- no commit needed, writes immediately
+// Execute the change - no commit needed, writes immediately
 db.exec(sql_delete);
 
 console.log("Item successfully deleted from the Military Warehouse database!");

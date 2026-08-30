@@ -6,6 +6,7 @@ const db = new DatabaseSync('military_warehouse.db');
 
 // Recreate the table so we start clean
 db.exec("DROP TABLE IF EXISTS Inventory");
+
 db.exec(`
 CREATE TABLE IF NOT EXISTS Inventory (
     id INTEGER PRIMARY KEY,
@@ -15,8 +16,8 @@ CREATE TABLE IF NOT EXISTS Inventory (
 );
 `);
 
-// Same 10 items as the Python version, every date normalized
-// to ISO format (YYYY-MM-DD) -- uniform text that sorts and
+// every date normalized
+// to ISO format (YYYY-MM-DD) - uniform text that sorts and
 // compares correctly with plain SQL.
 db.exec(`
 INSERT INTO Inventory (part_name, quantity, delivery_date) 

@@ -11,8 +11,9 @@ const sql_select = "SELECT part_name, price FROM Inventory WHERE quantity > 100;
 const stmt = db.prepare(sql_select);
 const results = stmt.all();
 
-// Loop through the results (returned as plain JS objects, not tuples)
-for (const row of results) {
+// Loop through the results (returned as plain JS objects)
+for (const row of results)
+{
     console.log(`Item: ${row.part_name} | Price: $${row.price}`);
 }
 

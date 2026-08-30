@@ -12,7 +12,9 @@ const stmt = db.prepare(sql_sort);
 const results = stmt.all();
 
 console.log("CRITICAL REORDER LIST (LOWEST STOCK FIRST)");
-for (const row of results) {
+
+for (const row of results)
+{
     console.log(`Item: ${row.part_name} | Stock: ${row.quantity} | Unit Cost: $${row.price}`);
 }
 

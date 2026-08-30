@@ -15,11 +15,14 @@ const stmt = db.prepare(sql_search);
 const results = stmt.all(search_term);
 
 console.log(`SEARCH RESULTS FOR: ${search_term.toUpperCase()}`);
-for (const row of results) {
+
+for (const row of results)
+{
     console.log(`Item: ${row.part_name} | Stock: ${row.quantity} | Price: $${row.price}`);
 }
 
-if (results.length === 0) {
+if (results.length === 0)
+{
     console.log("Item not found in the warehouse.");
 }
 

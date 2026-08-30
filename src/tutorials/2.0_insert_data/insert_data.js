@@ -14,7 +14,7 @@ VALUES
 `;
 
 db.exec(sql_insert);
-// No commit needed -- writes to disk immediately, as covered earlier
+// No commit needed -- writes to disk immediately
 
 db.close();
 
