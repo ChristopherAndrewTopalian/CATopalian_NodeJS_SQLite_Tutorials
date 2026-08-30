@@ -3,6 +3,8 @@ Master Node.js SQLite to process massive datasets. From mapping the human genome
 
 ### [TABLE OF CONTENTS](TABLE_OF_CONTENTS.md)  
 
+### [CODE BOOK](main.md)  
+
 ---
 
 ![001](src/media/textures/backgrounds/001.jpg)
