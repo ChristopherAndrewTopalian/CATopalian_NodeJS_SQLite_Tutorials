@@ -4,21 +4,30 @@ const { DatabaseSync } = require('node:sqlite');
 
 const db = new DatabaseSync('military_warehouse.db');
 
-// The SQL command to INSERT data
-const sql_insert = `
-INSERT INTO Inventory (part_name, quantity, price) 
-VALUES 
-    ('Night Vision Goggles', 45, 2500.00),
-    ('Kevlar Vest', 150, 450.50),
-    ('Field Medical Kit', 300, 75.25);
-`;
+// PREPARE THE STATEMENT
+// Use ? as placeholders for the actual data
+const insert_stmt = db.prepare(`
+    INSERT INTO Inventory (part_name, quantity, price) 
+    VALUES (?, ?, ?)
+`);
 
-db.exec(sql_insert);
-// No commit needed -- writes to disk immediately
+// THE DATA
+// In a real app, this would come from a user interface or an API
+const new_inventory = [
+    ['Night Vision Goggles', 45, 2500.00],
+    ['Kevlar Vest', 150, 450.50],
+    ['Field Medical Kit', 300, 75.25]
+];
+
+// EXECUTE SECURELY
+// Loop through the array and bind the variables to the ? placeholders
+for (const item of new_inventory) {
+    insert_stmt.run(item[0], item[1], item[2]);
+}
 
 db.close();
 
-console.log("Military Warehouse data inserted successfully!");
+console.log("Military Warehouse data securely inserted!");
 
 //----//
 

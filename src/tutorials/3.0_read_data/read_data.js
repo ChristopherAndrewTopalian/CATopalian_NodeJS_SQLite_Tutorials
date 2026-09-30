@@ -4,14 +4,20 @@ const { DatabaseSync } = require('node:sqlite');
 
 const db = new DatabaseSync('military_warehouse.db');
 
-// The SQL command to SELECT data
-const sql_select = "SELECT part_name, price FROM Inventory WHERE quantity > 100;";
-
-// Prepare and fetch the results
+// PREPARE THE STATEMENT
+// Use ? for the filter condition!
+const sql_select = "SELECT part_name, price FROM Inventory WHERE quantity > ?;";
 const stmt = db.prepare(sql_select);
-const results = stmt.all();
 
-// Loop through the results (returned as plain JS objects)
+// THE FILTER VARIABLE
+// In a real app, this would come from a user's UI slider or input box
+const min_quantity = 100;
+
+// EXECUTE SECURELY
+// Pass the variable into .all() to safely bind it to the ?
+const results = stmt.all(min_quantity);
+
+// Loop through the results
 for (const row of results)
 {
     console.log(`Item: ${row.part_name} | Price: $${row.price}`);

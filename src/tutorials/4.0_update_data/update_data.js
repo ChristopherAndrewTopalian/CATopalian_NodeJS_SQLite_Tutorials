@@ -4,17 +4,25 @@ const { DatabaseSync } = require('node:sqlite');
 
 const db = new DatabaseSync('military_warehouse.db');
 
-// The SQL command to UPDATE existing data
-const sql_update = `
-UPDATE Inventory 
-SET quantity = 100 
-WHERE part_name = 'Kevlar Vest';
-`;
+// PREPARE THE STATEMENT
+// Use ? for both the new value and the search condition!
+const update_stmt = db.prepare(`
+    UPDATE Inventory 
+    SET quantity = ? 
+    WHERE part_name = ?
+`);
 
-// Execute the change - no commit needed, writes immediately
-db.exec(sql_update);
+// THE VARIABLES
+// In a real app, a user might submit a form to update stock levels
+const new_quantity = 100;
+const target_item = 'Kevlar Vest';
 
-console.log("Military Warehouse inventory updated successfully!");
+// EXECUTE SECURELY
+// CRITICAL RULE: You must pass the variables into .run() in the 
+// EXACT same order that the ? placeholders appear in the SQL string!
+update_stmt.run(new_quantity, target_item);
+
+console.log("Military Warehouse inventory securely updated!");
 
 db.close();
 

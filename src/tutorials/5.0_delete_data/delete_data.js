@@ -4,16 +4,22 @@ const { DatabaseSync } = require('node:sqlite');
 
 const db = new DatabaseSync('military_warehouse.db');
 
-// The SQL command to DELETE existing data
-const sql_delete = `
-DELETE FROM Inventory 
-WHERE part_name = 'Night Vision Goggles';
-`;
+// PREPARE THE STATEMENT
+// Use ? to safely target the exact item to delete
+const delete_stmt = db.prepare(`
+    DELETE FROM Inventory 
+    WHERE part_name = ?
+`);
 
-// Execute the change - no commit needed, writes immediately
-db.exec(sql_delete);
+// THE TARGET VARIABLE
+// In a real app, this comes from a user clicking a "Delete" button in the UI
+const target_item = 'Night Vision Goggles';
 
-console.log("Item successfully deleted from the Military Warehouse database!");
+// EXECUTE SECURELY
+// Pass the variable into .run() to safely bind it to the ?
+delete_stmt.run(target_item);
+
+console.log("Item securely deleted from the Military Warehouse database!");
 
 db.close();
 
